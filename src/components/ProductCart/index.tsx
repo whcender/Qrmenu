@@ -5,7 +5,7 @@ import { oneProductType } from '@/types';
 
 const index = ({ products, index }: { products: oneProductType, index: number }) => {
     return (
-            <ul className={`flex flex-wrap gap-10 justify-center items-center px-1 `}>
+            <ul className={`flex flex-wrap gap-10 justify-center items-center px-1 mt-4`}>
 
                 <div className='flex flex-col items-center justify-center gap-3 border p-5  w-full rounded-lg shadow-lg' key={products.id}> {/* Anahtar olarak benzersiz bir değer kullanılmalı */}
                     <Image

@@ -9,7 +9,7 @@ import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 
 import { getUserByEmail } from '@/data/user';
 
-export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: string | null,) => {
+export const login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedFileds = LoginSchema.safeParse(values);
 
     if (!validatedFileds.success) {

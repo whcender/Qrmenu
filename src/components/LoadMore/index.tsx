@@ -36,15 +36,15 @@ function LoadMore() {
       </section>
       <section className="flex justify-center items-center w-full">
         {reachedEnd ? (
-          <h2 className='mt-4 font-semibold font-osw text-center'>AFİYET <span className='text-red-700'>OLSUN</span> :)</h2>
+          null
         ) : (
           <div ref={ref}>
             <Image
-              src="./spinner.svg"
+              src="https://i.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.webp"
               alt="spinner"
-              width={56}
-              height={56}
-              className="object-contain"
+              width={80}
+              height={80}
+              className="object-contain mt-4"
             />
           </div>
         )}

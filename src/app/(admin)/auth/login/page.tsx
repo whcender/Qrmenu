@@ -47,7 +47,7 @@ const page = () => {
         setSuccess("");
 
         startTransition(() => {
-            login(values, callbackUrl)
+            login(values)
             .then((data) => {
                 setError(data?.error);
                 // setSuccess(data?.success);
