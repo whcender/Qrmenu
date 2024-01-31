@@ -3,8 +3,6 @@ import { fetchProduct } from "@/actions/getData"
 import LoadMore from '@/components/LoadMore'
 
 
-
-
 const page = async () => {
 
     const products = await fetchProduct(1)
