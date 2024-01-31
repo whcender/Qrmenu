@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import { prisma } from "@/utils/connect";
 import { NextResponse, NextRequest } from "next/server";
 
@@ -50,6 +51,13 @@ export const GET = async (req: NextRequest) => {
 
 
 export async function DELETE(req: Request) {
+    const session = await auth()
+    if (!session) {
+      return new NextResponse(
+        JSON.stringify({ message: "Yetkiniz Yok" }),
+        { status: 400 }
+      );
+    }
 
     try {
         const { productName } = await req.json();
@@ -69,6 +77,13 @@ export async function DELETE(req: Request) {
 
 
 export async function POST(req: Request) {
+    const session = await auth()
+    if (!session) {
+      return new NextResponse(
+        JSON.stringify({ message: "Yetkiniz Yok" }),
+        { status: 400 }
+      );
+    }
     const { categoryName, productName, productDescription, productPrice, productImage } = await req.json();
     const existingCategory = await prisma.categories.findUnique({
         where: {

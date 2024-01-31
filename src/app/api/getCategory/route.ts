@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/utils/connect";
+import { auth } from "@/auth"
 
 
 export const GET = async (req: NextRequest) => {
+
   const { searchParams } = new URL(req.url);
   const cat = searchParams.get("cat");
 
@@ -23,6 +25,14 @@ export const GET = async (req: NextRequest) => {
 };
 
 export const DELETE = async (req: Request) => {
+  const session = await auth()
+  if (!session) {
+    return new NextResponse(
+      JSON.stringify({ message: "Yetkiniz Yok" }),
+      { status: 400 }
+    );
+  }
+
   try {
     const { categoryName } = await req.json();
 
@@ -52,6 +62,13 @@ export const DELETE = async (req: Request) => {
 
 export async function POST(req: Request) {
 
+  const session = await auth()
+  if (!session) {
+    return new NextResponse(
+      JSON.stringify({ message: "Yetkiniz Yok" }),
+      { status: 400 }
+    );
+  }
 
   const { categoryName, imageName } = await req.json();
 
@@ -78,10 +95,18 @@ export async function POST(req: Request) {
 
 export async function PUT(req: Request) {
 
+  const session = await auth()
+  if (!session) {
+    return new NextResponse(
+      JSON.stringify({ message: "Yetkiniz Yok" }),
+      { status: 400 }
+    );
+  }
+
   try {
     const { categoryName, mainName, imageName } = await req.json();
     console.log(categoryName);
-    
+
 
     const updateCategory = await prisma.categories.update({
       where: {

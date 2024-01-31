@@ -3,9 +3,8 @@
  * Bunlar login gerektirmez
  * @type {string[]}
  */
-export const publicRoutes = [
-    "/dashboard",
-  ];
+export const publicRoutes = "/dashboard";
+ 
   
 
 

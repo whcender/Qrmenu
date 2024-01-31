@@ -1,23 +1,13 @@
-
-import { auth } from "@/auth"
-import { signOut } from "@/auth"
+import Buttons from "@/app/(admin)/_components/buttons"
+import Image from "next/image"
 
 const page = async() => {
   
-  //old way
-    const session = await auth()
-    {JSON.stringify(session)}
-
     return (
-    <div>
-      <form action={async ()=>{
-        "use server";
-
-        await signOut()
-      }}>
-        <button>Sign Out</button>
-        <p className="mt-10 text-2xl">{session?.user?.name}</p>
-      </form>
+    <div className="flex flex-col items-center justify-center mt-10">
+      <p className="font-bold">İşlem Seçin</p>
+      <Buttons />
+      <Image className="mt-16" src="https://em-content.zobj.net/source/apple/354/gear_2699-fe0f.png" width={100} height={100} alt="dash"/>
     </div>
   )
 }
