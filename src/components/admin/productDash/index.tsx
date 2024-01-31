@@ -23,14 +23,14 @@ const Index = () => {
   const { isLoading, error, data: allProducts } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch(`http://localhost:3000/api/getProducts?page=1&limit=3000`).then((res) => res.json()),
+      fetch(`${url}/api/getProducts?page=1&limit=3000`).then((res) => res.json()),
   });
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: () => {
-      return fetch(`http://localhost:3000/api/getProducts`, {
+      return fetch(`${url}/api/getProducts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const Index = () => {
 
   const deleteProduct = async (productName: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/getProducts`, {
+      const response = await fetch(`${url}/api/getProducts`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
