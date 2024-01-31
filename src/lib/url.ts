@@ -1,1 +1,1 @@
-export const url = "https://qrmenu-demo.vercel.app";
+export const url = "http://localhost:3000";
