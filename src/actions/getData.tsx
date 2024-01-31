@@ -2,11 +2,12 @@
 
 import ProductCart from "@/components/ProductCart";
 import { oneProductType } from "@/types";
+import { url } from "@/lib/url";
 
 // fetchProduct fonksiyonu
 export const fetchProduct = async (page: number, cat?: string) => {
     if (!cat) {
-        const response = await fetch(`http://localhost:3000/api/getProducts?page=${page}&limit=8`)
+        const response = await fetch(`${url}/api/getProducts?page=${page}&limit=8`)
 
         const data = await response.json();
 
@@ -15,7 +16,7 @@ export const fetchProduct = async (page: number, cat?: string) => {
         ));
     }
 
-    const response = await fetch(`http://localhost:3000/api/getProducts?page=${page}&limit=8&category=${cat}`)
+    const response = await fetch(`${url}/api/getProducts?page=${page}&limit=8&category=${cat}`)
 
     const data = await response.json();
 
