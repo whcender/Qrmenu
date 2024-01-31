@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { categoryType } from '@/types';
 import Image from 'next/image';
+import { url } from '@/lib/url';
 
 const getData = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/getCategory", {
+    const res = await fetch(`${url}/api/getCategory`, {
       cache: "no-store"
     });
 
