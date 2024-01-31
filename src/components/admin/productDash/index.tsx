@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { oneProductType } from '@/types';
 import ButtonProduct from '../buttonProduct';
 import { toast } from 'react-toastify';
+import {url} from "@/lib/url"
 
 const Index = () => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -22,14 +23,14 @@ const Index = () => {
   const { isLoading, error, data: allProducts } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch(`${process.env.DEFAULT_URL}/api/getProducts?page=1&limit=3000`).then((res) => res.json()),
+      fetch(`${url}/api/getProducts?page=1&limit=3000`).then((res) => res.json()),
   });
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: () => {
-      return fetch(`${process.env.DEFAULT_URL}/api/getProducts`, {
+      return fetch(`${url}/api/getProducts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,7 +59,7 @@ const Index = () => {
 
   const deleteProduct = async (productName: string) => {
     try {
-      const response = await fetch(`${process.env.DEFAULT_URL}/api/getProducts`, {
+      const response = await fetch(`${url}/api/getProducts`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

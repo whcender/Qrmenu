@@ -3,6 +3,8 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { url } from "@/lib/url"
+
 
 import React from 'react'
 
@@ -18,7 +20,7 @@ const index =  (image: any ,mainNamee: any) => {
     const queryClient = useQueryClient();
     const mutation = useMutation({
         mutationFn: () => {
-            return fetch(`${process.env.DEFAULT_URL}/api/product/getProducts/${mainName}`, {
+            return fetch(`${url}/api/product/getProducts/${mainName}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

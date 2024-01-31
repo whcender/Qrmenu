@@ -2,13 +2,14 @@
 import { oneCategoryType } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { url } from '@/lib/url';
 
 const ListBoxExample = ({selectedItem, setSelectedItem} : any) => {
   
   const { isLoading, error, data } = useQuery({
     queryKey: ["cate"],
     queryFn: () =>
-      fetch("http://localhost:3000/api/getCategory").then((res) => res.json()),
+      fetch(`${url}/api/getCategory`).then((res) => res.json()),
   });
 
   const handleItemClick = (item: any) => {

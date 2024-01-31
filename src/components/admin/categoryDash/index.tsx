@@ -4,6 +4,7 @@ import Button from '@/components/admin/button'
 import { oneCategoryType } from '@/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { url } from "@/lib/url"
 
 
 
@@ -18,12 +19,12 @@ const Index = () => {
     const { isLoading, data } = useQuery({
         queryKey: ["categories"],
         queryFn: () =>
-            fetch(`${process.env.DEFAULT_URL}/api/getCategory`).then((res) => res.json()),
+            fetch(`${url}/api/getCategory`).then((res) => res.json()),
     });
 
     const mutation = useMutation({
         mutationFn: ({ name, picture }: { name: string; picture: string }) => {
-            return fetch(`${process.env.DEFAULT_URL}/api/getCategory`, {
+            return fetch(`${url}/api/getCategory`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -63,7 +64,7 @@ const Index = () => {
 
     const deleteCategory = async (categoryName: string) => {
         try {
-            const response = await fetch(`${process.env.DEFAULT_URL}/api/getCategory`, {
+            const response = await fetch(`${url}/api/getCategory`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
