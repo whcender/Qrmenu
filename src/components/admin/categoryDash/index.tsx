@@ -24,7 +24,7 @@ const Index = () => {
 
     const mutation = useMutation({
         mutationFn: ({ name, picture }: { name: string; picture: string }) => {
-            return fetch(`${url}/api/getCategory`, {
+            return fetch(`http://localhost:3000/api/getCategory`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const Index = () => {
 
     const deleteCategory = async (categoryName: string) => {
         try {
-            const response = await fetch(`${url}/api/getCategory`, {
+            const response = await fetch(`http://localhost:3000/api/getCategory`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

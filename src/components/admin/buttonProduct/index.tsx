@@ -20,7 +20,7 @@ const index =  (image: any ,mainNamee: any) => {
     const queryClient = useQueryClient();
     const mutation = useMutation({
         mutationFn: () => {
-            return fetch(`${url}/api/product/getProducts/${mainName}`, {
+            return fetch(`http://localhost:3000/api/product/getProducts/${mainName}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
