@@ -19,11 +19,13 @@ function LoadMore() {
     if (inView && !reachedEnd) {
       fetchProduct(page).then((res) => {
         // Eğer gelen veri boşsa, bu sayfa sonu demektir
-        if (res.length === 0) {
+        if (res?.length === 0) {
           setReachedEnd(true);
         } else {
-          setData([...data, ...res]);
-          page++;
+          if(res){
+            setData([...data, ...res]);
+            page++;
+          }
         }
       });
     }
