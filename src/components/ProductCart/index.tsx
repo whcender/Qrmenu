@@ -15,6 +15,7 @@ const index = ({ products }: { products: oneProductType }) => {
                         height="200"
                         loading='lazy'
                         quality={30}
+                        placeholder="empty"
                     />
                     <p className='w-44 text-center font-semibold text-sm'>{products.name}</p>
                     <p className='text-xs text-gray-600 font-medium w-[95%] text-center'>{products.description}</p>
