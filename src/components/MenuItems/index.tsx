@@ -1,29 +1,12 @@
 import Link from 'next/link';
 import { categoryType } from '@/types';
 import Image from 'next/image';
-import { url } from '@/lib/url';
+import { getCat } from '@/actions/getCat';
 
-const getData = async () => {
-  try {
-    const res = await fetch(`${url}/api/getCategory`, {
-      cache: "no-store"
-    });
-
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
-
-    const result = await res.json();
-    return result;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [];
-  }
-};
 
 const Index = async () => {
 
-  const category:categoryType = await getData();
+  const category:categoryType = await getCat();
 
   const offset = 0;
 

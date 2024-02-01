@@ -1,10 +1,7 @@
 "use server";
 
 import ProductCart from "@/components/ProductCart";
-import { oneProductType, productType } from "@/types";
 import { prisma } from "@/utils/connect";
-import { url } from "@/lib/url";
-
 
 
 // fetchProduct fonksiyonu
@@ -19,8 +16,8 @@ export const fetchProduct = async (page: number, cat?: string) => {
                 take: limit,
                 skip: (page - 1) * limit,
             });
-            return products.map((item: any, index: number) => (
-                <ProductCart key={item.id} products={item} index={index} />
+            return products.map((item: any) => (
+                <ProductCart key={item.id} products={item}  />
             ));
         } catch (err) {
             console.log(err);
@@ -34,8 +31,8 @@ export const fetchProduct = async (page: number, cat?: string) => {
                 skip: (page - 1) * limit, // Calculate the offset based on the page and limit
             });
 
-            return products.map((item: any, index: number) => (
-                <ProductCart key={item.id} products={item} index={index} />
+            return products.map((item: any) => (
+                <ProductCart key={item.id} products={item} />
             ));
 
         } catch (err) {
