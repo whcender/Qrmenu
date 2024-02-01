@@ -16,6 +16,7 @@ const index = ({ products }: { products: oneProductType }) => {
                         loading='lazy'
                         quality={30}
                         placeholder="blur"
+                        blurDataURL="/load.gif"
                     />
                     <p className='w-44 text-center font-semibold text-sm'>{products.name}</p>
                     <p className='text-xs text-gray-600 font-medium w-[95%] text-center'>{products.description}</p>
