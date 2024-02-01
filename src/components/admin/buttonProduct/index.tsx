@@ -10,7 +10,7 @@ import { url } from "@/lib/url"
 
 import React from 'react'
 
-const index = (image: any, mainNamee: any) => {
+const index = (image: any) => {
 
     const [file, setFile] = useState<File | null>(null);
     const [pname, setPname] = useState("");
@@ -40,10 +40,8 @@ const index = (image: any, mainNamee: any) => {
                 console.log("Upload is " + progress + "% done");
                 switch (snapshot.state) {
                   case "paused":
-                    console.log("Upload is paused");
                     break;
                   case "running":
-                    console.log("Upload is running");
                     toast.info("Bekleyin! Resim yükleniyor...")
                     break;
                 }
@@ -58,7 +56,7 @@ const index = (image: any, mainNamee: any) => {
                     setImageName(downloadURL);
                     toast.success("Resim başarıyla yüklendi!")
                   // Set the download URL or do something with it
-                  console.log("File available at: ", downloadURL);
+                  
                 });
               }
             );
