@@ -6,7 +6,7 @@ import { url } from '@/lib/url';
 
 const ListBoxExample = ({selectedItem, setSelectedItem} : any) => {
   
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["cate"],
     queryFn: () =>
       fetch(`${url}/api/getCategory`).then((res) => res.json()),

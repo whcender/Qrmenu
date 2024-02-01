@@ -4,6 +4,8 @@ import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const metadata: Metadata = {
@@ -24,6 +26,7 @@ export default function RootLayout({
           <main className="flex-grow">{children}</main>
           <Footer />
         </div>
+        <ToastContainer position="bottom-right" theme="dark" autoClose={3000}/>
         <SpeedInsights />
         <Analytics />
       </body>
