@@ -1,8 +1,12 @@
 "use client"
 import * as Dialog from '@radix-ui/react-dialog';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { app } from "@/utils/firebase"
+import { url } from '@/lib/url';
+
 
 
 
@@ -10,16 +14,63 @@ import React from 'react'
 
 const index =  (image: any ,mainNamee: any) => { 
 
+    const [file, setFile] = useState<File | null>(null);
     const [categoryName, setCategoryName] = useState("");
     const [imageName, setImageName] = useState("");
     
     const mainName = image.mainNamee;
+
+    useEffect(() => {
+        // Check if 'file' is not null before proceeding
+        if (file) {
+          const storage = getStorage(app);
+    
+          const upload = () => {
+            const name = new Date().getTime() + file.name;
+            const storageRef = ref(storage, name);
+    
+            const uploadTask = uploadBytesResumable(storageRef, file);
+    
+            uploadTask.on(
+              "state_changed",
+              (snapshot) => {
+                const progress =
+                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log("Upload is " + progress + "% done");
+                switch (snapshot.state) {
+                  case "paused":
+                    break;
+                  case "running":
+                    toast.info("Bekleyin! Resim yükleniyor...")
+                    break;
+                }
+              },
+              (error) => {
+                // Handle upload error
+                console.error("Error uploading: ", error);
+              },
+              () => {
+                // Upload completed successfully
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImageName(downloadURL);
+                    toast.success("Resim başarıyla yüklendi!")
+                  // Set the download URL or do something with it
+                  
+                });
+              }
+            );
+          };
+    
+          // Call the upload function
+          upload();
+        }
+      }, [file]); // Add dependencies if needed
       
 
     const queryClient = useQueryClient();
     const mutation = useMutation({
         mutationFn: () => {
-            return fetch(`https://rosacarolina-menu.vercel.app/api/category/getcategory`, {
+            return fetch(`${url}/api/getCategory`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -68,14 +119,18 @@ const index =  (image: any ,mainNamee: any) => {
                         />
                     </fieldset>
                     <fieldset className="mb-[15px] flex items-center gap-5">
-                        <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="name">
+                    <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="name">
                             Resim Linki
                         </label>
                         <input
-                            className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                            id="image"
-                            placeholder={image.image.length > 0 ? image.image : "Resim Yok (Link Girin)"}
-                            onChange={(e) => setImageName(e.target.value)}
+                            type="file"
+                            id='image'
+                            onChange={(e) => {
+                                const selectedFile = e.target.files?.[0];
+                                if (selectedFile) {
+                                    setFile(selectedFile);
+                                }
+                            }}
                         />
                     </fieldset>
 

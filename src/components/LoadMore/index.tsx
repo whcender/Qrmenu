@@ -42,7 +42,7 @@ function LoadMore() {
         ) : (
           <div ref={ref}>
             <Image
-              src="https://i.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.webp"
+              src="/loading.gif"
               alt="spinner"
               width={80}
               height={80}
