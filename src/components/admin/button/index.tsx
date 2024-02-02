@@ -1,4 +1,6 @@
 "use client"
+
+import imageCompression from 'browser-image-compression';
 import * as Dialog from '@radix-ui/react-dialog';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
@@ -90,6 +92,37 @@ const index =  (image: any ,mainNamee: any) => {
         mutation.mutate();
     }
 
+    const compressImage = async (file: File) => {
+        try {
+          const options = {
+            maxSizeMB: 1, // Max dosya boyutu megabayt cinsinden
+            maxWidthOrHeight: 400, // Max genişlik veya yükseklik piksel cinsinden
+            useWebWorker: true,
+          };
+    
+          const compressedFile = await imageCompression(file, options);
+          return compressedFile;
+        } catch (error) {
+          console.error('Dosya sıkıştırma hatası:', error);
+          return null;
+        }
+      };
+
+      const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFile = e.target.files?.[0];
+    
+        if (selectedFile) {
+          const compressedFile = await compressImage(selectedFile);
+    
+          if (compressedFile) {
+            setFile(compressedFile);
+          }else {
+            // Dosya boyutu istenilenin üzerinde, kullanıcıya uyarı gösterilebilir
+            alert("Dosya boyutu istenilenin üzerinde. Lütfen daha küçük bir dosya seçin.");
+          }
+        }
+      };
+
     return (
         <Dialog.Root>
             <Dialog.Trigger asChild>
@@ -125,12 +158,7 @@ const index =  (image: any ,mainNamee: any) => {
                         <input
                             type="file"
                             id='image'
-                            onChange={(e) => {
-                                const selectedFile = e.target.files?.[0];
-                                if (selectedFile) {
-                                    setFile(selectedFile);
-                                }
-                            }}
+                            onChange={handleFileChange}
                         />
                     </fieldset>
 

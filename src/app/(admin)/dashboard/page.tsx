@@ -7,7 +7,7 @@ const page = async() => {
     <div className="flex flex-col items-center justify-center mt-10">
       <p className="font-bold">İşlem Seçin</p>
       <Buttons />
-      <Image className="mt-16" src="https://em-content.zobj.net/source/apple/354/gear_2699-fe0f.png" width={100} height={100} alt="dash"/>
+      <Image className="mt-16" src="/settings.png" width={100} height={100} alt="dash"/>
     </div>
   )
 }
