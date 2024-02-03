@@ -21,6 +21,5 @@ export const fetchProduct = async (page: number, cat?: string) => {
         ));
     } catch (err) {
         console.log(err);
-
     }
 }
