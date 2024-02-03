@@ -1,25 +1,27 @@
 "use server";
 
 import ProductCart from "@/components/ProductCart";
-import { prisma } from "@/utils/connect";
-
+import { oneProductType } from "@/types";
+import { url } from "@/lib/url";
 
 // fetchProduct fonksiyonu
 export const fetchProduct = async (page: number, cat?: string) => {
-    const limit = 8
+    if (!cat) {
+        const response = await fetch(`${url}/api/getProducts?page=${page}&limit=8`)
 
-    try {
-        const products = await prisma.products.findMany({
-            where: {
-                ...(cat ? { categoryname: cat } : {}),
-            },
-            take: limit,
-            skip: (page - 1) * limit,
-        });
-        return products.map((item: any) => (
+        const data = await response.json();
+
+        return data.map((item: oneProductType, index: number) => (
             <ProductCart key={item.id} products={item} />
         ));
-    } catch (err) {
-        console.log(err);
     }
+
+    const response = await fetch(`${url}/api/getProducts?page=${page}&limit=8&category=${cat}`)
+
+    const data = await response.json();
+
+    return data.map((item: oneProductType, index: number) => (
+        <ProductCart key={item.id} products={item} />
+    ));
+
 }

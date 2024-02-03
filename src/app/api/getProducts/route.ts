@@ -13,32 +13,14 @@ export const GET = async (req: NextRequest) => {
         try {
             const products = await prisma.products.findMany({
                 where: {
-                    categoryname: cat
+                    ...(cat ? { categoryname: cat } : {}),
                 },
                 take: limit,
                 skip: (page - 1) * limit,
             });
             return new NextResponse(JSON.stringify(products), { status: 200 });
+
         } catch (err) {
-            console.log(err);
-            return new NextResponse(
-                JSON.stringify({ message: "Something went wrong!" }),
-                { status: 500 }
-            );
-        }
-    }
-
-    if(!cat){
-        try {
-            const products = await prisma.products.findMany({
-                take: limit,
-                skip: (page - 1) * limit, // Calculate the offset based on the page and limit
-            });
-
-
-            return new NextResponse(JSON.stringify(products), { status: 200 });
-        } catch (err) {
-            console.log(err);
             return new NextResponse(
                 JSON.stringify({ message: "Something went wrong!" }),
                 { status: 500 }
