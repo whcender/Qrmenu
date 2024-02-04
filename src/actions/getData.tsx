@@ -33,7 +33,7 @@ export const fetchProduct = async (page: number, cat?: string) => {
 
     if(cat){
         try {
-            const res = await fetch(`${url}/api/getProducts?page=${page}&limit=8&cat=${cat}`, {
+            const res = await fetch(`${url}/api/getProducts?page=${page}&limit=8&category=${cat}`, {
             });
 
             if (!res.ok) {
