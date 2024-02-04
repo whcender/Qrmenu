@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { categoryType } from '@/types';
 import Image from 'next/image';
-import { getCat } from '@/actions/getCat';
 import { url } from '@/lib/url';
 
 
