@@ -8,7 +8,7 @@ import { oneProductType } from '@/types';
 import ButtonProduct from '../buttonProduct';
 import { toast } from 'react-toastify';
 import { url } from "@/lib/url"
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { app } from "@/utils/firebase"
 
 
@@ -110,6 +110,9 @@ const Index = () => {
 
   const deleteProduct = async (productName: string) => {
     try {
+
+      await deleteImage(imageName);
+
       const response = await fetch(`${url}/api/getProducts`, {
         method: 'DELETE',
         headers: {
@@ -154,6 +157,18 @@ const Index = () => {
       return null;
     }
   };
+
+  const deleteImage = async (imageName: string) => {
+    try {
+        const storage = getStorage(app);
+        const imageRef = ref(storage, imageName);
+        await deleteObject(imageRef);
+        toast.success("Resim başarıyla silindi!");
+    } catch (error) {
+        console.error("Resim silinirken hata oluştu: ", error);
+        toast.error("Resim silinirken bir hata oluştu.");
+    }
+};
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
