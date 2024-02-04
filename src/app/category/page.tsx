@@ -4,7 +4,7 @@ import ProductCart from '@/components/ProductCart'
 import { url } from '@/lib/url'
 
 
-export const fetchProduct = async (page: number, cat?: string) => {
+const fetchProduct = async (page: number, cat?: string) => {
 
     if (!cat) {
         try {
