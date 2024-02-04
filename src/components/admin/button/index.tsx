@@ -89,7 +89,7 @@ const index =  (image: any ,mainNamee: any) => {
     });
 
     const updateCategory = async () => {
-      if (mainNamee && imageName) {
+      if (mainNamee && image.image) {
         const userConfirmed = window.confirm("Onaylıyor musunuz?");
         if (userConfirmed) {
             // Resmi sil
