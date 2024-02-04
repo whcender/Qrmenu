@@ -93,7 +93,7 @@ const index =  (image: any ,mainNamee: any) => {
         const userConfirmed = window.confirm("Onaylıyor musunuz?");
         if (userConfirmed) {
             // Resmi sil
-            await deleteImage(mainNamee);
+            await deleteImage();
 
             // Yeni resmi yükle
             mutation.mutate();
@@ -104,10 +104,10 @@ const index =  (image: any ,mainNamee: any) => {
     }
     }
 
-    const deleteImage = async (imageName: string) => {
+    const deleteImage = async () => {
       try {
           const storage = getStorage(app);
-          const imageRef = ref(storage, imageName);
+          const imageRef = ref(storage, image.image);
           await deleteObject(imageRef);
           toast.success("Eski resim başarıyla silindi!");
       } catch (error) {
