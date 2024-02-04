@@ -1,10 +1,14 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@/components/admin/button'
 import { oneCategoryType } from '@/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { url } from "@/lib/url"
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import imageCompression from 'browser-image-compression';
+import { app } from "@/utils/firebase"
+
 
 
 
@@ -13,8 +17,55 @@ const Index = () => {
 
     const queryClient = useQueryClient()
 
+  const [file, setFile] = useState<File | null>(null);
     const [prop, setProp] = useState("");
     const [imageName, setImageName] = useState("");
+
+
+    useEffect(() => {
+        // Check if 'file' is not null before proceeding
+        if (file) {
+          const storage = getStorage(app);
+    
+          const upload = () => {
+            const name = new Date().getTime() + file.name;
+            const storageRef = ref(storage, name);
+    
+            const uploadTask = uploadBytesResumable(storageRef, file);
+    
+            uploadTask.on(
+              "state_changed",
+              (snapshot) => {
+                const progress =
+                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log("Upload is " + progress + "% done");
+                switch (snapshot.state) {
+                  case "paused":
+                    break;
+                  case "running":
+                    toast.info("Bekleyin! Resim yükleniyor...")
+                    break;
+                }
+              },
+              (error) => {
+                // Handle upload error
+                console.error("Error uploading: ", error);
+              },
+              () => {
+                // Upload completed successfully
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                  setImageName(downloadURL);
+                  toast.success("Resim başarıyla yüklendi!")
+                  // Set the download URL or do something with it
+                });
+              }
+            );
+          };
+    
+          // Call the upload function
+          upload();
+        }
+      }, [file]); // Add dependencies if needed
 
     const { isLoading, data } = useQuery({
         queryKey: ["categories"],
@@ -82,8 +133,41 @@ const Index = () => {
         }
     }
 
+    const compressImage = async (file: File) => {
+        try {
+          const options = {
+            maxSizeMB: 1, // Max dosya boyutu megabayt cinsinden
+            maxWidthOrHeight: 200, // Max genişlik veya yükseklik piksel cinsinden
+            useWebWorker: true,
+          };
+    
+          const compressedFile = await imageCompression(file, options);
+          return compressedFile;
+        } catch (error) {
+          console.error('Dosya sıkıştırma hatası:', error);
+          return null;
+        }
+      };
+    
+      const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFile = e.target.files?.[0];
+    
+        if (selectedFile) {
+          const compressedFile = await compressImage(selectedFile);
+    
+          if (compressedFile) {
+            setFile(compressedFile);
+          } else {
+            // Dosya boyutu istenilenin üzerinde, kullanıcıya uyarı gösterilebilir
+            alert("Dosya boyutu istenilenin üzerinde. Lütfen daha küçük bir dosya seçin.");
+          }
+        }
+      };
+    
 
     if (isLoading) return "Loading...";
+
+    
     return (
         <div className='mt-10'>
             <div className='mb-11'>
@@ -94,7 +178,11 @@ const Index = () => {
                     }
                 } className='flex flex-col gap-4 items-center justify-around w-[90%] m-auto mt-4'>
                     <input className='border border-black rounded-sm px-3 py-1' type="text" placeholder='Kategori İsmi..' />
-                    <input className='border border-black rounded-sm px-3 py-1' type="text" placeholder='Kategori Resim Linki..' />
+                    <input
+                        type="file"
+                        id='image'
+                        onChange={handleFileChange}
+                    />
 
                     <button className='border border-black text-white rounded bg-black px-3 py-1' type='submit'>Kategori Ekle</button>
                 </form>
