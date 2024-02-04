@@ -5,7 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { app } from "@/utils/firebase"
 import { url } from '@/lib/url';
 
@@ -89,8 +89,32 @@ const index =  (image: any ,mainNamee: any) => {
     });
 
     const updateCategory = async () => {
+      if (mainNamee && imageName) {
+        const userConfirmed = window.confirm("Onaylıyor musunuz?");
+        if (userConfirmed) {
+            // Resmi sil
+            await deleteImage(mainNamee);
+
+            // Yeni resmi yükle
+            mutation.mutate();
+        }
+    } else {
+        // Eğer eski resim adı veya yeni resim adı yoksa sadece güncelle
         mutation.mutate();
     }
+    }
+
+    const deleteImage = async (imageName: string) => {
+      try {
+          const storage = getStorage(app);
+          const imageRef = ref(storage, imageName);
+          await deleteObject(imageRef);
+          toast.success("Eski resim başarıyla silindi!");
+      } catch (error) {
+          console.error("Resim silinirken hata oluştu: ", error);
+          toast.error("Resim silinirken bir hata oluştu.");
+      }
+  };
 
     const compressImage = async (file: File) => {
         try {
@@ -165,13 +189,7 @@ const index =  (image: any ,mainNamee: any) => {
                     <div className="mt-[25px] flex justify-end">
                         <Dialog.Close asChild>
                             <button onClick={() => {
-                                const userConfirmed = window.confirm("Onaylıyor musunuz?");
-
-                                if (userConfirmed) {
                                     updateCategory();
-                                } else {
-                                    null;
-                                }
                             }
                             } className="border border-black bg-green4 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
                                 Değişiklikleri Kaydet
