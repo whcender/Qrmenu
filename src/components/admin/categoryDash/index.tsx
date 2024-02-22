@@ -113,9 +113,9 @@ const Index = () => {
     form.reset();
   }
 
-  const deleteCategory = async (categoryName: string) => {
+  const deleteCategory = async (categoryName: string, image: string) => {
     try {
-      await deleteImage(imageName);
+      await deleteImage(image);
 
       const response = await fetch(`${url}/api/getCategory`, {
         method: 'DELETE',
@@ -136,10 +136,10 @@ const Index = () => {
     }
   }
 
-  const deleteImage = async (imageName: string) => {
+  const deleteImage = async (image: string) => {
     try {
         const storage = getStorage(app);
-        const imageRef = ref(storage, imageName);
+        const imageRef = ref(storage, image);
         await deleteObject(imageRef);
         toast.success("Resim başarıyla silindi!");
     } catch (error) {
@@ -217,7 +217,7 @@ const Index = () => {
                 <button onClick={() => {
                   const userConfirmed = window.confirm("Onaylıyor musunuz?");
                   if (userConfirmed) {
-                    deleteCategory(category.name);
+                    deleteCategory(category.name, category.image);
                   } else {
                     null;
                   }
