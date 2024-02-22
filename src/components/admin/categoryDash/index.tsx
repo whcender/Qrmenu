@@ -74,7 +74,7 @@ const Index = () => {
   });
 
   const mutation = useMutation({
-    mutationFn: ({ name, picture }: { name: string; picture: string }) => {
+    mutationFn: ({ name }: { name: string; }) => {
       return fetch(`${url}/api/getCategory`, {
         method: "POST",
         headers: {
@@ -109,7 +109,7 @@ const Index = () => {
     const picture = input2.value;
 
 
-    mutation.mutate({ name, picture });
+    mutation.mutate({ name});
     form.reset();
   }
 
@@ -128,6 +128,7 @@ const Index = () => {
       });
 
       if (response.ok) {
+        queryClient.invalidateQueries({ queryKey: ["categories"] });
         toast.success("Ürün Silindi!")
       }
     } catch (err) {

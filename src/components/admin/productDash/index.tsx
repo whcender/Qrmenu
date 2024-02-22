@@ -124,6 +124,7 @@ const Index = () => {
       });
 
       if (response.ok) {
+        queryClient.invalidateQueries({ queryKey: ["orders"] });
         toast.success("Ürün Silindi!")
       } else {
         toast.error("Ürün Silinemedi!")
