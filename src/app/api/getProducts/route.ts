@@ -3,6 +3,8 @@ import { prisma } from "@/utils/connect";
 import { NextResponse, NextRequest } from "next/server";
 
 
+export const dynamic = 'force-dynamic';
+
 export const GET = async (req: NextRequest) => {
     const { searchParams } = new URL(req.url);
     const cat = searchParams.get("category");
