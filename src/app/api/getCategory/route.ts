@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/utils/connect";
 import { auth } from "@/auth"
 
+export const dynamic = 'force-dynamic';
 
 export const GET = async (req: NextRequest) => {
 

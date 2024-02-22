@@ -91,7 +91,7 @@ const Index = () => {
           productName: productName,
           productDescription: productDescription,
           productPrice: productPrice,
-          productImage: productImage,
+          productImage: imageName,
         }),
       });
     },

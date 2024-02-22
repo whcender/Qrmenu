@@ -82,7 +82,7 @@ const Index = () => {
         },
         body: JSON.stringify({
           categoryName: name,
-          imageName: picture,
+          imageName,
         }),
       });
     },
