@@ -1,13 +1,14 @@
 "use server";
 
+
 import ProductCart from "@/components/ProductCart";
 import { prisma } from "@/utils/connect";
 import { url } from "@/lib/url";
-
-export const dynamic = 'force-dynamic';
+import { headers } from "next/headers";
 
 // fetchProduct fonksiyonu
 export const fetchProduct = async (page: number, cat?: string) => {
+    headers();
 
     if (!cat) {
         try {
