@@ -14,7 +14,6 @@ const index = ({ products }: { products: oneProductType }) => {
                         width="200"
                         height="200"
                         loading='lazy'
-                        quality={30}
                         placeholder="blur"
                         blurDataURL="/load.gif"
                     />

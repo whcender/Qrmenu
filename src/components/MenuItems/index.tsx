@@ -35,7 +35,7 @@ const Index = async () => {
             <Link className="flex flex-col items-center justify-center" href={`/category/${item.name}`} key={item.name}>
               <p className={`w-24 text-center font-semibold ${offset > 270 ? "text-xs" : "text-sm"}`}>{item.name}</p>
               <div className={`w-24 h-24 flex items-center justify-center`}>
-                <Image className='w-24 h-24 object-cover' src={item.image} alt={item.name} width={ 100 } height={ 100 } quality={30} loading='lazy' placeholder="blur" blurDataURL="/load.gif" />
+                <Image className='w-24 h-24 object-cover' src={item.image} alt={item.name} width={ 100 } height={ 100 } loading='lazy' placeholder="blur" blurDataURL="/load.gif" />
               </div>
             </Link>
           ))}
