@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
 import { oneProductType } from '@/types';
-import Fav from './fav';
 
 
 const index = ({ products }: { products: oneProductType }) => {
@@ -21,7 +20,6 @@ const index = ({ products }: { products: oneProductType }) => {
                 <p className='w-44 text-center font-semibold text-sm'>{products.name}</p>
                 <p className='text-xs text-gray-600 font-medium w-[95%] text-center'>{products.description}</p>
                 <p className='font-semibold text-gray-700 text-lg'><span className='text-xs font-bold'>{products.price}</span>₺</p>
-                <Fav id={products.id}/>
             </div>
         </ul>
 
