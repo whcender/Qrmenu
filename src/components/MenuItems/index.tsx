@@ -31,12 +31,6 @@ const Index = async () => {
     <div>
       <div className={`w-full overflow-x-scroll whitespace-nowrap px-3 py-2 transition-all duration-200 `}>
         <ul className="flex gap-4">
-        <Link className="flex flex-col items-center justify-center" href={`/fav`} key="favs">
-              <p className={`w-24 text-center font-semibold ${offset > 270 ? "text-xs" : "text-sm"}`}>Favoriler</p>
-              <div className={`w-24 h-24 flex items-center justify-center`}>
-                <Image className='w-24 h-24 object-cover' src="fav.svg" alt="fav" width={ 100 } height={ 100 } loading='lazy' placeholder="blur" blurDataURL="/load.gif" />
-              </div>
-            </Link>
           {category.map((item) => (
             <Link className="flex flex-col items-center justify-center" href={`/category/${item.name}`} key={item.name}>
               <p className={`w-24 text-center font-semibold ${offset > 270 ? "text-xs" : "text-sm"}`}>{item.name}</p>

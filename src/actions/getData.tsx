@@ -3,23 +3,19 @@
 
 import ProductCart from "@/components/ProductCart";
 import { prisma } from "@/utils/connect";
-import { url } from "@/lib/url";
 import { headers } from "next/headers";
 
 // fetchProduct fonksiyonu
 export const fetchProduct = async (page: number, cat?: string) => {
     headers();
 
+    const limit = 8;
     if (!cat) {
         try {
-            const res = await fetch(`${url}/api/getProducts?page=${page}&limit=8`, {
+            const result = await prisma.products.findMany({
+                take: limit,
+                skip: (page - 1) * limit,
             });
-
-            if (!res.ok) {
-                throw new Error(`HTTP error! Status: ${res.status}`);
-            }
-
-            const result = await res.json();
 
             return result.map((item: any) => (
                 <ProductCart key={item.id} products={item} />
@@ -35,14 +31,13 @@ export const fetchProduct = async (page: number, cat?: string) => {
 
     if(cat){
         try {
-            const res = await fetch(`${url}/api/getProducts?page=${page}&limit=8&category=${cat}`, {
+            const result = await prisma.products.findMany({
+                where: {
+                    categoryname: cat
+                },
+                take: limit,
+                skip: (page - 1) * limit,
             });
-
-            if (!res.ok) {
-                throw new Error(`HTTP error! Status: ${res.status}`);
-            }
-
-            const result = await res.json();
 
             return result.map((item: any) => (
                 <ProductCart key={item.id} products={item} />
