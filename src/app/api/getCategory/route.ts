@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/utils/connect";
 import { auth } from "@/auth"
+import translate from "translate";
+
 
 export const dynamic = 'force-dynamic';
 
@@ -71,10 +73,11 @@ export async function POST(req: Request) {
     );
   }
 
-  const { categoryName, imageName, ecategoryName } = await req.json();
+  const { categoryName, imageName } = await req.json();
 
+  const ecategoryName = await translate(categoryName, { from: "tr", to: "en" });
 
-  if (categoryName === "" || imageName === "" || ecategoryName === "") {
+  if (categoryName === "" || imageName === "") {
     return new NextResponse(
       JSON.stringify({ message: "Bütün Alanları Doldurun!" }),
       { status: 400 }
@@ -106,9 +109,9 @@ export async function PUT(req: Request) {
   }
 
   try {
-    const { categoryName, mainName, imageName, ecategoryName } = await req.json();
-    console.log(categoryName);
-
+    const { categoryName, mainName, imageName } = await req.json();
+    
+    const ecategoryName = await translate(categoryName, { from: "tr", to: "en" });
 
     const updateCategory = await prisma.categories.update({
       where: {

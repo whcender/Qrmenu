@@ -8,10 +8,9 @@ import { toast } from 'react-toastify';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { app } from "@/utils/firebase"
 import { url } from "@/lib/url"
-import translate from "translate";
 
 
-const index = async (image: any) => {
+const index = (image: any) => {
 
   const [file, setFile] = useState<File | null>(null);
   const [pname, setPname] = useState("");
@@ -19,8 +18,7 @@ const index = async (image: any) => {
   const [Pdesc, setPdesc] = useState("");
   const [Pprice, setPprice] = useState(0);
 
-  const epname = await translate(pname, { from: "tr", to: "en" });
-  const epdesc = await translate(Pdesc, { from: "tr", to: "en" });
+
 
   const mainName = image.id;
 
@@ -78,7 +76,7 @@ const index = async (image: any) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          pname, Pdesc, imageName, Pprice, epname, epdesc
+          pname, Pdesc, imageName, Pprice
         }),
       });
     },

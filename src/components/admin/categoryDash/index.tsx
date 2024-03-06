@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import Button from '@/components/admin/button'
 import { oneCategoryType } from '@/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -8,12 +8,11 @@ import { url } from "@/lib/url"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import imageCompression from 'browser-image-compression';
 import { app } from "@/utils/firebase"
-import translate from "translate";
 
 
 
 
-const Index = async () => {
+const Index =  () => {
 
 
   const queryClient = useQueryClient()
@@ -22,7 +21,6 @@ const Index = async () => {
   const [prop, setProp] = useState("");
   const [imageName, setImageName] = useState("");
 
-  const ecategoryName = await translate(prop, { from: "tr", to: "en" });
 
 
   useEffect(() => {
@@ -86,7 +84,6 @@ const Index = async () => {
         body: JSON.stringify({
           categoryName: name,
           imageName,
-          ecategoryName
         }),
       });
     },

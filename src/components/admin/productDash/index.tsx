@@ -10,19 +10,16 @@ import { toast } from 'react-toastify';
 import { url } from "@/lib/url"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { app } from "@/utils/firebase"
-import translate from "translate";
 
 
 
-const Index = async () => {
+const Index =  () => {
   const [file, setFile] = useState<File | null>(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState(0);
 
-  const eproductName = await translate(productName, { from: "tr", to: "en" });
-  const eproductDescription = await translate(productDescription, { from: "tr", to: "en" });
 
   const [prop, setProp] = useState("");
   const [imageName, setImageName] = useState("");
@@ -96,8 +93,6 @@ const Index = async () => {
           productDescription: productDescription,
           productPrice: productPrice,
           productImage: imageName,
-          eproductName: eproductName,
-          eproductDescription: eproductDescription
         }),
       });
     },

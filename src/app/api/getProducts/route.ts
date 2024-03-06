@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { prisma } from "@/utils/connect";
 import { NextResponse, NextRequest } from "next/server";
-
+import translate from "translate";
 
 export const dynamic = 'force-dynamic';
 
@@ -86,7 +86,12 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
-    const { categoryName, productName, productDescription, productPrice, productImage, eproductName, eproductDescription } = await req.json();
+    const { categoryName, productName, productDescription, productPrice, productImage } = await req.json();
+    // translate
+    const eproductName = await translate(productName, { from: "tr", to: "en" });
+    const eproductDescription = await translate(productDescription, { from: "tr", to: "en" });
+
+    
     const existingCategory = await prisma.categories.findUnique({
         where: {
             name: categoryName
