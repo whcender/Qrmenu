@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { oneProductType } from '@/types';
-
+import { useLanStore } from '@/store/lang';
 
 const index = ({ products }: { products: oneProductType }) => {
     return (
@@ -18,6 +18,7 @@ const index = ({ products }: { products: oneProductType }) => {
                     blurDataURL="/load.gif"
                 />
                 <p className='w-44 text-center font-semibold text-sm'>{products.name}</p>
+                <p>{useLanStore.getState().value ? "var" : "yok"}</p>
                 <p className='text-xs text-gray-600 font-medium w-[95%] text-center'>{products.description}</p>
                 <p className='font-semibold text-gray-700 text-lg'><span className='text-xs font-bold'>{products.price}</span>₺</p>
             </div>
