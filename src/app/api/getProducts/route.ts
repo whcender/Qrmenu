@@ -86,7 +86,7 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
-    const { categoryName, productName, productDescription, productPrice, productImage } = await req.json();
+    const { categoryName, productName, productDescription, productPrice, productImage, eproductName, eproductDescription } = await req.json();
     const existingCategory = await prisma.categories.findUnique({
         where: {
             name: categoryName
@@ -101,6 +101,8 @@ export async function POST(req: Request) {
                 price: productPrice,
                 description: productDescription,
                 image: productImage,
+                ename: eproductName,
+                edescription: eproductDescription,
                 category: {
                     connect: {
                         name: existingCategory.name

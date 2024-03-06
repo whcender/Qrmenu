@@ -71,10 +71,10 @@ export async function POST(req: Request) {
     );
   }
 
-  const { categoryName, imageName } = await req.json();
+  const { categoryName, imageName, ecategoryName } = await req.json();
 
 
-  if (categoryName === "" || imageName === "") {
+  if (categoryName === "" || imageName === "" || ecategoryName === "") {
     return new NextResponse(
       JSON.stringify({ message: "Bütün Alanları Doldurun!" }),
       { status: 400 }
@@ -85,7 +85,8 @@ export async function POST(req: Request) {
   const addCategory = await prisma.categories.create({
     data: {
       name: categoryName,
-      image: imageName
+      image: imageName,
+      ename: ecategoryName
     }
   });
 
@@ -105,7 +106,7 @@ export async function PUT(req: Request) {
   }
 
   try {
-    const { categoryName, mainName, imageName } = await req.json();
+    const { categoryName, mainName, imageName, ecategoryName } = await req.json();
     console.log(categoryName);
 
 
@@ -115,7 +116,8 @@ export async function PUT(req: Request) {
       },
       data: {
         name: categoryName || undefined,
-        image: imageName || undefined
+        image: imageName || undefined,
+        ename: ecategoryName || undefined
       }
     })
       ;

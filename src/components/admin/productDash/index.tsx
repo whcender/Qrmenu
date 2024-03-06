@@ -10,6 +10,8 @@ import { toast } from 'react-toastify';
 import { url } from "@/lib/url"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { app } from "@/utils/firebase"
+import translate from "translate";
+
 
 
 const Index = () => {
@@ -18,6 +20,9 @@ const Index = () => {
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState(0);
+
+  const eproductName = translate(productName, { from: "tr", to: "en" });
+  const eproductDescription = translate(productDescription, { from: "tr", to: "en" });
 
   const [prop, setProp] = useState("");
   const [imageName, setImageName] = useState("");
@@ -91,6 +96,8 @@ const Index = () => {
           productDescription: productDescription,
           productPrice: productPrice,
           productImage: imageName,
+          eproductName: eproductName,
+          eproductDescription: eproductDescription
         }),
       });
     },

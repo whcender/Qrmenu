@@ -8,17 +8,20 @@ import { toast } from 'react-toastify';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { app } from "@/utils/firebase"
 import { url } from '@/lib/url';
+import translate from "translate";
 
 
 
 
 import React from 'react'
 
-const index =  (image: any ,mainNamee: any) => { 
+const index = async (image: any ,mainNamee: any) => { 
 
     const [file, setFile] = useState<File | null>(null);
     const [categoryName, setCategoryName] = useState("");
     const [imageName, setImageName] = useState("");
+
+    const ecategoryName = await translate(categoryName, { from: "tr", to: "en" });
     
     const mainName = image.mainNamee;
 
@@ -78,7 +81,7 @@ const index =  (image: any ,mainNamee: any) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    categoryName, mainName, imageName
+                    categoryName, mainName, imageName, ecategoryName
                 }),
             });
         },

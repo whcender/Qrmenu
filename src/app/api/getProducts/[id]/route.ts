@@ -31,7 +31,7 @@ export const GET = async (
     const { id } = params;
 
     try {
-      const { pname, imageName, Pdesc ,Pprice } = await req.json();
+      const { pname, imageName, Pdesc ,Pprice, epname, epdesc } = await req.json();
       
   
       const updateProdcuts = await prisma.products.update({
@@ -43,6 +43,8 @@ export const GET = async (
           image: imageName || undefined,
           price: Pprice || undefined,
           description: Pdesc || undefined,
+          ename: epdesc || undefined,
+          edescription: epdesc || undefined,
         }
       })
         ;

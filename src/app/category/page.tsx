@@ -29,7 +29,7 @@ const getData = async (page: number) => {
 const page = async () => {
 
     const products: productType = await getData(1)
-
+    
 
     return (
         <div>

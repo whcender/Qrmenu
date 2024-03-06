@@ -13,15 +13,18 @@ datasource db {
 model Products {
   id   String @id @default(auto()) @map("_id") @db.ObjectId
   name String  @unique
+  ename String
   category Categories @relation(fields: [categoryname], references: [name])
   categoryname String 
   image String
   price Int
   description String?
+  edescription String?
 }
 model Categories{
   id   String @id @default(auto()) @map("_id") @db.ObjectId
   name String  @unique
+  ename String 
   image String 
   products Products[]
 }

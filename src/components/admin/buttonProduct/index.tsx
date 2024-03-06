@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { app } from "@/utils/firebase"
 import { url } from "@/lib/url"
+import translate from "translate";
+
 
 const index = (image: any) => {
 
@@ -16,6 +18,9 @@ const index = (image: any) => {
   const [imageName, setImageName] = useState("");
   const [Pdesc, setPdesc] = useState("");
   const [Pprice, setPprice] = useState(0);
+
+  const epname = translate(pname, { from: "tr", to: "en" });
+  const epdesc = translate(Pdesc, { from: "tr", to: "en" });
 
   const mainName = image.id;
 
@@ -73,7 +78,7 @@ const index = (image: any) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          pname, Pdesc, imageName, Pprice
+          pname, Pdesc, imageName, Pprice, epname, epdesc
         }),
       });
     },

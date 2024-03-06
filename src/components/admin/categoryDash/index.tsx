@@ -8,6 +8,7 @@ import { url } from "@/lib/url"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import imageCompression from 'browser-image-compression';
 import { app } from "@/utils/firebase"
+import translate from "translate";
 
 
 
@@ -20,6 +21,8 @@ const Index = () => {
   const [file, setFile] = useState<File | null>(null);
   const [prop, setProp] = useState("");
   const [imageName, setImageName] = useState("");
+
+  const ecategoryName = translate(prop, { from: "tr", to: "en" });
 
 
   useEffect(() => {
@@ -83,6 +86,7 @@ const Index = () => {
         body: JSON.stringify({
           categoryName: name,
           imageName,
+          ecategoryName
         }),
       });
     },
