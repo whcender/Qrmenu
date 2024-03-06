@@ -14,15 +14,15 @@ import translate from "translate";
 
 
 
-const Index = () => {
+const Index = async () => {
   const [file, setFile] = useState<File | null>(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState(0);
 
-  const eproductName = translate(productName, { from: "tr", to: "en" });
-  const eproductDescription = translate(productDescription, { from: "tr", to: "en" });
+  const eproductName = await translate(productName, { from: "tr", to: "en" });
+  const eproductDescription = await translate(productDescription, { from: "tr", to: "en" });
 
   const [prop, setProp] = useState("");
   const [imageName, setImageName] = useState("");

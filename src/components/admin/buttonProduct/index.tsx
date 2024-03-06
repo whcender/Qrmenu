@@ -11,7 +11,7 @@ import { url } from "@/lib/url"
 import translate from "translate";
 
 
-const index = (image: any) => {
+const index = async (image: any) => {
 
   const [file, setFile] = useState<File | null>(null);
   const [pname, setPname] = useState("");
@@ -19,8 +19,8 @@ const index = (image: any) => {
   const [Pdesc, setPdesc] = useState("");
   const [Pprice, setPprice] = useState(0);
 
-  const epname = translate(pname, { from: "tr", to: "en" });
-  const epdesc = translate(Pdesc, { from: "tr", to: "en" });
+  const epname = await translate(pname, { from: "tr", to: "en" });
+  const epdesc = await translate(Pdesc, { from: "tr", to: "en" });
 
   const mainName = image.id;
 

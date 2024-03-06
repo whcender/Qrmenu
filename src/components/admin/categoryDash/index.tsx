@@ -13,7 +13,7 @@ import translate from "translate";
 
 
 
-const Index = () => {
+const Index = async () => {
 
 
   const queryClient = useQueryClient()
@@ -22,7 +22,7 @@ const Index = () => {
   const [prop, setProp] = useState("");
   const [imageName, setImageName] = useState("");
 
-  const ecategoryName = translate(prop, { from: "tr", to: "en" });
+  const ecategoryName = await translate(prop, { from: "tr", to: "en" });
 
 
   useEffect(() => {
