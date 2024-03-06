@@ -6,6 +6,6 @@ interface GenerationState {
 }
 
 export const useLanStore = create<GenerationState>()((set) => ({
-    value: false,
+    value: true,
     setValue: (value) => set({ value }),
 }));
