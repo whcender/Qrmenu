@@ -1,6 +1,7 @@
 export type categoryType = {
     name: string;
     image: string;
+    ename: string;
 }[];
 
 export type productType = {

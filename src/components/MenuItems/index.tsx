@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { categoryType } from '@/types';
 import Image from 'next/image';
 import { url } from '@/lib/url';
+import Text from './text';
 
 
 const Index = async () => {
-
   const getData = async () => {
     try {
       const res = await fetch(`${url}/api/getCategory`, {
@@ -25,7 +25,6 @@ const Index = async () => {
   };
 
   const category:categoryType = await getData();
-  const offset = 0;
 
   return (
     <div>
@@ -33,7 +32,7 @@ const Index = async () => {
         <ul className="flex gap-4">
           {category.map((item) => (
             <Link className="flex flex-col items-center justify-center" href={`/category/${item.name}`} key={item.name}>
-              <p className={`w-24 text-center font-semibold ${offset > 270 ? "text-xs" : "text-sm"}`}>{item.name}</p>
+              <Text text={item.name} text2={item.ename}/>
               <div className={`w-24 h-24 flex items-center justify-center`}>
                 <Image className='w-24 h-24 object-cover' src={item.image} alt={item.name} width={ 100 } height={ 100 } loading='lazy' placeholder="blur" blurDataURL="/load.gif" />
               </div>
