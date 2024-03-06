@@ -40,7 +40,7 @@
     "tailwindcss-animate": "^1.0.7",
     "translate": "^2.0.2",
     "zod": "^3.22.4",
-    "zustand": "^4.4.5"
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

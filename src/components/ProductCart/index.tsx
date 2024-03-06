@@ -1,9 +1,13 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import { oneProductType } from '@/types';
-import { useGenerationStore } from '@/store/idea-generation'
+import { useLanStore } from '@/store/lang';
 
 const index = ({ products }: { products: oneProductType }) => {
+
+    const { value } = useLanStore()
+
     return (
         <ul className={`flex flex-wrap gap-10 justify-center items-center px-1 mt-4`}>
             <div className='flex flex-col items-center justify-center gap-3 border p-5  w-full rounded-lg shadow-lg relative' key={products.id}> {/* Anahtar olarak benzersiz bir değer kullanılmalı */}
@@ -17,13 +21,11 @@ const index = ({ products }: { products: oneProductType }) => {
                     placeholder="blur"
                     blurDataURL="/load.gif"
                 />
-                <p className='w-44 text-center font-semibold text-sm'>{products.name}</p>
-                <p>{useGenerationStore.getState().theme ? "var" : "yok"}</p>
-                <p className='text-xs text-gray-600 font-medium w-[95%] text-center'>{products.description}</p>
+                <p className='w-44 text-center font-semibold text-sm'>{value ? products.name : products.ename}</p>
+                <p className='text-xs text-gray-600 font-medium w-[95%] text-center'>{value ? products.description : products.edescription}</p>
                 <p className='font-semibold text-gray-700 text-lg'><span className='text-xs font-bold'>{products.price}</span>₺</p>
             </div>
         </ul>
-
     )
 }
 
