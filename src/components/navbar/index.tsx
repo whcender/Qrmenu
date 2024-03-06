@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { BsInstagram } from 'react-icons/bs'
+import Lang from "@/components/lang"
 
 
 const index = () => {
@@ -15,7 +15,7 @@ const index = () => {
                     <span className='bg-black w-full h-0.5'>-</span>
                     <h4 className='text-sm font-normal tracking-wide text-gray-700 text-left w-full font-osw'>Menu</h4>
                 </div>
-                <div className='flex gap-3'>
+                <div className='flex gap-3 items-center'>
                     <a href="https://www.instagram.com/__rosacarolinacafeoltu/?hl=tr">
                         <h3 className='shadow text-xs items-center font-semibold border border-black text-black py-1 px-2 rounded-lg flex gap-2'>Instagram
                             <BsInstagram
@@ -24,7 +24,7 @@ const index = () => {
                             />
                         </h3>
                     </a>
-                    
+                    <Lang />
                 </div>
             </div>
         </div>
