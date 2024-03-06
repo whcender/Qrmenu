@@ -17,7 +17,7 @@ const index = () => {
                 </div>
                 <div className='flex gap-3 items-center'>
                     <a href="https://www.instagram.com/__rosacarolinacafeoltu/?hl=tr">
-                        <h3 className='shadow text-xs items-center font-semibold border border-black text-black py-1 px-2 rounded-lg flex gap-2'>Instagram
+                        <h3 className='shadow text-xs items-center font-semibold border border-black text-black py-1 px-2 rounded-lg flex gap-2'>
                             <BsInstagram
                                 className='text-black'
                                 size={20}
