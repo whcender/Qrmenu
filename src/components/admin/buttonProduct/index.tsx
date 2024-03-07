@@ -91,7 +91,9 @@ const index = (image: any) => {
       const userConfirmed = window.confirm("Onaylıyor musunuz?");
       if (userConfirmed) {
           // Resmi sil
+        if(file){
           await deleteImage();
+        }
 
           // Yeni resmi yükle
           mutation.mutate();
