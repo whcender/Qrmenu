@@ -54,6 +54,7 @@ const index = (image: any) => {
           () => {
             // Upload completed successfully
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+
               setImageName(downloadURL);
               toast.success("Resim başarıyla yüklendi!")
               // Set the download URL or do something with it
@@ -87,17 +88,12 @@ const index = (image: any) => {
   });
 
   const updateCategory = async () => {
-    if (mainName && image.image) {
+    if (!file === undefined ||  null) {
       const userConfirmed = window.confirm("Onaylıyor musunuz?");
       if (userConfirmed) {
           // Resmi sil
-        // sorun cıkarsa if i sil
-        if(file){
           await deleteImage();
           mutation.mutate();
-        }else{
-          mutation.mutate();
-        }
 
           // Yeni resmi yükle
           
