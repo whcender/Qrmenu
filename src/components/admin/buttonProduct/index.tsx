@@ -88,15 +88,14 @@ const index = (image: any) => {
   });
 
   const updateCategory = async () => {
-    if (!file === undefined ||  null) {
+    if (mainName && image.image) {
       const userConfirmed = window.confirm("Onaylıyor musunuz?");
       if (userConfirmed) {
           // Resmi sil
           await deleteImage();
-          mutation.mutate();
 
           // Yeni resmi yükle
-          
+          mutation.mutate();
       }
   } else {
       // Eğer eski resim adı veya yeni resim adı yoksa sadece güncelle
