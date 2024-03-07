@@ -99,8 +99,7 @@ export async function POST(req: Request) {
 
 
 export async function PUT(req: Request) {
-
-  const session = await auth()
+  const session = await auth();
   if (!session) {
     return new NextResponse(
       JSON.stringify({ message: "Yetkiniz Yok" }),
@@ -111,23 +110,29 @@ export async function PUT(req: Request) {
   try {
     const { categoryName, mainName, imageName } = await req.json();
     
-    const ecategoryName = await translate(categoryName, { from: "tr", to: "en" });
+    // Sadece boş olmayan verileri güncelle
+    const dataToUpdate: any = {};
+    if (categoryName) {
+      dataToUpdate.name = categoryName;
+      dataToUpdate.ename = await translate(categoryName, { from: "tr", to: "en" });
+    }
+    if (imageName) dataToUpdate.image = imageName;
 
-    const updateCategory = await prisma.categories.update({
-      where: {
-        name: mainName
-      },
-      data: {
-        name: categoryName || undefined,
-        image: imageName || undefined,
-        ename: ecategoryName || undefined
-      }
-    })
-      ;
+    // Sadece güncellenecek veri varsa güncelleme işlemini yap
+    if (Object.keys(dataToUpdate).length > 0) {
+      const updateCategory = await prisma.categories.update({
+        where: {
+          name: mainName
+        },
+        data: dataToUpdate
+      });
 
-    return NextResponse.json(updateCategory);
-  }
-  catch (error) {
+      return NextResponse.json(updateCategory);
+    } else {
+      // Güncellenecek veri yoksa hata döndür
+      return NextResponse.json({ message: "No data to update" });
+    }
+  } catch (error) {
     return NextResponse.json({ message: "An error occurred" });
   }
 }
