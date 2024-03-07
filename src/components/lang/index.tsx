@@ -28,12 +28,12 @@ export default function SelectDemo() {
           <SelectGroup>
             <SelectItem value="TR">
               <p className="flex items-center gap-3 font-semibold">
-                <img className="w-6 " src="turkey.svg" alt="turkey" /> TR
+                <img className="w-6 " src="https://i.hizliresim.com/ng1t578.png" alt="turkey" /> TR
               </p>
             </SelectItem>
             <SelectItem value="EN">
               <p className="flex items-center gap-3 font-semibold">
-                <img className="w-6" src="en.svg" alt="en" /> EN
+                <img className="w-6" src="https://i.hizliresim.com/1ukapa0.png" alt="en" /> EN
               </p>
             </SelectItem>
           </SelectGroup>
