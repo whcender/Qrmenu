@@ -34,7 +34,7 @@ const Index = async () => {
             <Link className="flex flex-col items-center justify-center" href={`/category/${item.name}`} key={item.name}>
               <Text text={item.name} text2={item.ename}/>
               <div className={`w-24 h-24 flex items-center justify-center`}>
-                <Image className='w-24 h-24 object-cover' src={item.image} alt={item.name} width={ 100 } height={ 100 } loading='lazy' placeholder="blur" blurDataURL="/load.gif" />
+                <Image className='w-24 h-24 object-cover' src={item.image} alt={item.name} width={ 100 } height={ 100 } loading='lazy' placeholder="blur" blurDataURL="https://i.hizliresim.com/74xpsgl.gif" />
               </div>
             </Link>
           ))}
