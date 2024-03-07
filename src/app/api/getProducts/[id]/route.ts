@@ -29,33 +29,36 @@ export const GET = async (
 };
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
-
   const { id } = params;
 
   try {
     const { pname, imageName, Pdesc, Pprice } = await req.json();
 
-    const ename = await translate(pname, { from: "tr", to: "en" });
-    const epdesc = await translate(Pdesc, { from: "tr", to: "en" });
+    // Sadece boş olmayan verileri güncelle
+    const dataToUpdate: any = {};
+    if (pname) dataToUpdate.name = pname;
+    if (imageName) dataToUpdate.image = imageName;
+    if (Pdesc) {
+      dataToUpdate.description = Pdesc;
+      dataToUpdate.edescription = await translate(Pdesc, { from: "tr", to: "en" });
+    }
+    if (Pprice) dataToUpdate.price = Pprice;
 
-    const updateProdcuts = await prisma.products.update({
-      where: {
-        id: id,
-      },
-      data: {
-        name: pname || undefined,
-        image: imageName || undefined,
-        price: Pprice || undefined,
-        description: Pdesc || undefined,
-        ename: ename || undefined,
-        edescription: epdesc || undefined,
-      }
-    })
-      ;
+    // Sadece güncellenecek veri varsa güncelleme işlemini yap
+    if (Object.keys(dataToUpdate).length > 0) {
+      const updateProdcuts = await prisma.products.update({
+        where: {
+          id: id,
+        },
+        data: dataToUpdate
+      });
 
-    return NextResponse.json(updateProdcuts);
-  }
-  catch (error) {
+      return NextResponse.json(updateProdcuts);
+    } else {
+      // Güncellenecek veri yoksa hata döndür
+      return NextResponse.json({ message: "No data to update" });
+    }
+  } catch (error) {
     return NextResponse.json({ message: "An error occurred" });
   }
 }
