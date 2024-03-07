@@ -19,7 +19,7 @@ const index = ({ products }: { products: oneProductType }) => {
                     height="200"
                     loading='lazy'
                     placeholder="blur"
-                    blurDataURL="/load.gif"
+                    blurDataURL="https://i.hizliresim.com/74xpsgl.gif"
                 />
                 <p className='w-44 text-center font-semibold text-sm'>{value ? products.name : products.ename}</p>
                 <p className='text-xs text-gray-600 font-medium w-[95%] text-center'>{value ? products.description : products.edescription}</p>
