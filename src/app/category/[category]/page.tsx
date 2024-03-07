@@ -1,5 +1,6 @@
 import MenuItems from '@/components/MenuItems'
 import { fetchProduct } from "@/actions/getData"
+import LoadMore from '@/components/LoadMore'
 
 
 type Props = {

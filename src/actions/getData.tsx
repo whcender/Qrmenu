@@ -34,8 +34,7 @@ export const fetchProduct = async (page: number, cat?: string) => {
                 where: {
                     categoryname: cat
                 },
-                take: limit,
-                skip: (page - 1) * limit,
+
             });
 
             return result.map((item: any) => (
