@@ -94,10 +94,13 @@ const index = (image: any) => {
         // sorun cıkarsa if i sil
         if(file){
           await deleteImage();
+          mutation.mutate();
+        }else{
+          mutation.mutate();
         }
 
           // Yeni resmi yükle
-          mutation.mutate();
+          
       }
   } else {
       // Eğer eski resim adı veya yeni resim adı yoksa sadece güncelle
