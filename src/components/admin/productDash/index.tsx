@@ -96,9 +96,16 @@ const Index =  () => {
         }),
       });
     },
-    onSuccess() {
+    onSuccess(result) {
       queryClient.invalidateQueries({ queryKey: ["orders"] });
-      toast.success("Ürün Eklendi!")
+      if(result.ok) {
+        toast.success("Ürün Eklendi!")
+      }
+      if (result.status === 400) {
+        result.json().then((data) => {
+          toast.error(data.message);
+        })
+      }
     },
   });
 

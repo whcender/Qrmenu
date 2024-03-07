@@ -87,6 +87,13 @@ export async function POST(req: Request) {
       );
     }
     const { categoryName, productName, productDescription, productPrice, productImage } = await req.json();
+    
+    if (categoryName === "" || productName === "" || productDescription === "" || productPrice === "" || productImage === "") {
+        return new NextResponse(
+          JSON.stringify({ message: "Bütün Alanları Doldurun!" }),
+          { status: 400 }
+        );
+      }
     // translate
     const eproductName = await translate(productName, { from: "tr", to: "en" });
     const eproductDescription = await translate(productDescription, { from: "tr", to: "en" });

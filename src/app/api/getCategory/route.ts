@@ -75,7 +75,6 @@ export async function POST(req: Request) {
 
   const { categoryName, imageName } = await req.json();
 
-  const ecategoryName = await translate(categoryName, { from: "tr", to: "en" });
 
   if (categoryName === "" || imageName === "") {
     return new NextResponse(
@@ -84,6 +83,7 @@ export async function POST(req: Request) {
     );
   }
 
+  const ecategoryName = await translate(categoryName, { from: "tr", to: "en" });
 
   const addCategory = await prisma.categories.create({
     data: {
@@ -109,7 +109,7 @@ export async function PUT(req: Request) {
 
   try {
     const { categoryName, mainName, imageName } = await req.json();
-    
+
     // Sadece boş olmayan verileri güncelle
     const dataToUpdate: any = {};
     if (categoryName) {
