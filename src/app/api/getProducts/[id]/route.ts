@@ -36,7 +36,10 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
     // Sadece boş olmayan verileri güncelle
     const dataToUpdate: any = {};
-    if (pname) dataToUpdate.name = pname;
+    if (pname){
+      dataToUpdate.name = pname;
+      dataToUpdate.ename = await translate(pname, { from: "tr", to: "en" });
+    } 
     if (imageName) dataToUpdate.image = imageName;
     if (Pdesc) {
       dataToUpdate.description = Pdesc;
