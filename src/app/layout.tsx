@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export const metadata: Metadata = {
-  title: "Arlan Medya | QR Menü - Demo",
+  title: "Arlan | QR Menü - Demo",
   description: "Arlan Medya QR Menü Demo",
 };
 
