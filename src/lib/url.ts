@@ -1,1 +1,1 @@
-export const url = "https://demoqrmenu.vercel.app/";
+export const url = "https://qrmenu-demo.vercel.app";
