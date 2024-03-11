@@ -16,7 +16,7 @@ const index = () => {
                     <h4 className='text-sm font-normal tracking-wide text-gray-700 text-left w-full font-osw'>Menu</h4>
                 </div>
                 <div className='flex gap-3 items-center'>
-                    <a href="https://www.instagram.com/__rosacarolinacafeoltu/?hl=tr">
+                    <a href="https://www.instagram.com/arlanmedya/?hl=tr">
                         <h3 className='shadow text-xs items-center font-semibold border border-black text-black py-1 px-2 rounded-lg flex gap-2'>
                             <BsInstagram
                                 className='text-black'
