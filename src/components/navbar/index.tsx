@@ -10,7 +10,7 @@ const index = () => {
             <div className='px-3 py-6 container flex justify-between items-center'>
                 <div className='flex flex-col items-center '>
                     <Link href={"/"}>
-                        <h2 className='text-xl font-medium uppercase tracking-wide text-black font-osw'>Rosacarolina</h2>
+                        <h2 className='text-xl font-medium uppercase tracking-wide text-black font-osw'>arlancafe</h2>
                     </Link>
                     <span className='bg-black w-full h-0.5'>-</span>
                     <h4 className='text-sm font-normal tracking-wide text-gray-700 text-left w-full font-osw'>Menu</h4>
