@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { fetchProduct } from "@/actions/getData";
 
-let page = 2;
+
 
 export type AnimeCard = JSX.Element
 
@@ -14,6 +14,8 @@ function LoadMore() {
   const { ref, inView } = useInView();
   const [data, setData] = useState<AnimeCard[]>([]);
   const [reachedEnd, setReachedEnd] = useState(false);
+    //burası yeni eklendi öncesinde let ile tanımlıyorduk
+  const [page, setPage] = useState(2);
 
   useEffect(() => {
     if (inView && !reachedEnd) {
@@ -24,7 +26,7 @@ function LoadMore() {
         } else {
           if(res){
             setData([...data, ...res]);
-            page++;
+            setPage(page + 1);
           }
         }
       });
