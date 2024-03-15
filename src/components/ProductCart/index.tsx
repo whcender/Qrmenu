@@ -21,7 +21,7 @@ const index = ({ products }: { products: oneProductType }) => {
                     placeholder="blur"
                     blurDataURL="https://i.hizliresim.com/74xpsgl.gif"
                 />
-                <p className='w-44 text-center font-semibold text-sm'>{value ? products.name : products.ename}</p>
+                <p className='w-44 text-center font-semibold text-sm capitalize'>{value ? products.name : products.ename}</p>
                 <p className='text-xs text-gray-600 font-medium w-[95%] text-center'>{value ? products.description : products.edescription}</p>
                 <p className='font-semibold text-gray-700 text-lg'><span className='text-xs font-bold'>{products.price}</span>₺</p>
             </div>
