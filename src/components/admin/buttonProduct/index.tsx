@@ -88,7 +88,7 @@ const index = (image: any) => {
   });
 
   const updateCategory = async () => {
-    if (mainName && image.image) {
+    if (mainName && file) {
       const userConfirmed = window.confirm("Onaylıyor musunuz?");
       if (userConfirmed) {
           // Resmi sil
@@ -98,8 +98,13 @@ const index = (image: any) => {
           mutation.mutate();
       }
   } else {
-      // Eğer eski resim adı veya yeni resim adı yoksa sadece güncelle
-      mutation.mutate();
+      const userConfirmed = window.confirm("Onaylıyor musunuz?");
+      if (userConfirmed) {
+          // Resmi sil
+
+          // Yeni resmi yükle
+          mutation.mutate();
+      }
   }
   }
 
