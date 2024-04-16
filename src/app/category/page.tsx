@@ -3,9 +3,7 @@ import LoadMore from '@/components/LoadMore'
 import ProductCart from '@/components/ProductCart'
 import { url } from '@/lib/url'
 import { productType } from '@/types'
-
-
-
+import Button from "@/components/button";
 
 const getData = async (page: number) => {
     try {
@@ -39,6 +37,8 @@ const page = async () => {
                     <ProductCart key={item.id} products={item} />
                 )) }
                 <LoadMore />
+                <Button />
+
             </div>
         </div>
     )

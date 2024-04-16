@@ -1,6 +1,6 @@
 import MenuItems from '@/components/MenuItems'
 import { fetchProduct } from "@/actions/getData"
-import LoadMore from '@/components/LoadMore'
+import Button from "@/components/button";
 
 
 type Props = {
@@ -18,6 +18,7 @@ const Home = async ({ params }: Props) => {
       <div className='mt-10 '>
             {products}
       </div>
+      <Button />
     </div>
   );
 };
