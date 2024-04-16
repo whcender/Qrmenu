@@ -7,6 +7,9 @@ import { useLanStore } from '@/store/lang';
 const index = ({ products }: { products: oneProductType }) => {
 
     const { value } = useLanStore()
+    const description = value ? products.description : products.edescription;
+    const shortDescription = description.length > 110 ? description.slice(0, 110) + '...' : description;
+
 
     return (
         <ul className={`flex flex-wrap gap-10 justify-center items-center px-1 mt-4`}>
@@ -21,9 +24,9 @@ const index = ({ products }: { products: oneProductType }) => {
                     placeholder="blur"
                     blurDataURL="https://i.hizliresim.com/74xpsgl.gif"
                 />
-                <div className=''>
+                <div className='flex flex-col gap-4'>
                     <p className='w-44  font-semibold text-sm capitalize'>{value ? products.name : products.ename}</p>
-                    <p className='text-xs text-gray-600 font-medium w-[95%] '>{value ? products.description : products.edescription}</p>
+                    <p className='text-xs text-gray-600 font-medium w-full '>{shortDescription}</p>
                     <p className='font-semibold text-gray-700 text-lg'><span className='text-xs font-bold'>{products.price}</span>₺</p>
                 </div>
             </div>
