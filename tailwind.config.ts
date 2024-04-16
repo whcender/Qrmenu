@@ -13,6 +13,7 @@ const config = {
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
       osw: ['Oswald', 'sans-serif'],
+      outfit: ['Outfit', 'sans-serif'],
     },
     container: {
       center: true,
