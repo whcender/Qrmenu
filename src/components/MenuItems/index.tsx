@@ -28,7 +28,7 @@ const Index = async () => {
 
   return (
     <div>
-      <div className={`w-full overflow-x-scroll whitespace-nowrap px-3 py-2 transition-all duration-200 `}>
+      <div className={`w-full overflow-x-scroll whitespace-nowrap px-3 py-2 transition-all duration-200  `}>
         <ul className="flex gap-4">
           <Link className="flex flex-col items-center justify-center" href={`/category`}>
             <Text text={"Hepsi"} text2={"All"} />

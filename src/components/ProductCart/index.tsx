@@ -8,7 +8,7 @@ const index = ({ products }: { products: oneProductType }) => {
 
     const { value } = useLanStore()
     const description = value ? products.description : products.edescription;
-    const shortDescription = description.length > 120 ? description.slice(0, 120) + '...' : description;
+    const shortDescription = description.length > 110 ? description.slice(0, 110) + '...' : description;
 
 
     return (
@@ -24,7 +24,7 @@ const index = ({ products }: { products: oneProductType }) => {
                     placeholder="blur"
                     blurDataURL="https://i.hizliresim.com/74xpsgl.gif"
                 />
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-4 '>
                     <p className='w-full  font-black text-base capitalize'>{value ? products.name : products.ename}</p>
                     <p className='text-xs text-gray-600 font-semibold w-full '>{shortDescription}</p>
                     <p className='font-black text-gray-700 text-lg'><span className='text-xs font-black'>{products.price}</span>₺</p>
