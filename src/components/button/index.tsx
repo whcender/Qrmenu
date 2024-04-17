@@ -1,53 +1,44 @@
+import * as React from "react"
+import { MinusIcon, PlusIcon } from "@radix-ui/react-icons"
+
 import { Button } from "@/components/ui/button"
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { GiHamburgerMenu } from "react-icons/gi";
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/components/ui/drawer"
+import { GiHamburgerMenu } from "react-icons/gi"
+
+export default function DrawerDemo() {
 
 
-export default function DialogDemo() {
     return (
-        <div className="fixed bottom-5 right-3">
-            <Dialog >
-                <DialogTrigger asChild>
-                    <div className="bg-black rounded-full p-3">
-                        <GiHamburgerMenu size={30} color="white"/>
+        <Drawer>
+            <DrawerTrigger asChild>
+                <div className="fixed right-3 bottom-5 bg-black rounded-full p-3"> <GiHamburgerMenu size={30} color="white" /> </div>
+            </DrawerTrigger>
+            <DrawerContent>
+                <div className="mx-auto w-full max-w-sm">
+                    <DrawerHeader>
+                        <DrawerTitle>Move Goal</DrawerTitle>
+                        <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+                    </DrawerHeader>
+                    <div className="p-4 pb-0">
+                        <p>İşletme bilgileri</p>
                     </div>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                        <DialogTitle>Edit profile</DialogTitle>
-                        <DialogDescription>
-                            Make changes to your profile here. Click save when you're done.
-                        </DialogDescription>
-                    </DialogHeader>
-                    <div className="grid gap-4 py-4">
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="name" className="text-right">
-                                Name
-                            </Label>
-                            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-                        </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="username" className="text-right">
-                                Username
-                            </Label>
-                            <Input id="username" value="@peduarte" className="col-span-3" />
-                        </div>
-                    </div>
-                    <DialogFooter>
-                        <Button type="submit">Save changes</Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
-        </div>
+                    <DrawerFooter>
+                        <Button>Bize Puan ver</Button>
+                        <DrawerClose asChild>
+                            <Button variant="outline">Kapat</Button>
+                        </DrawerClose>
+                    </DrawerFooter>
+                </div>
+            </DrawerContent>
+        </Drawer>
     )
 }
