@@ -6,11 +6,11 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: "qrmenu-aa2e9.firebaseapp.com",
-  projectId: "qrmenu-aa2e9",
-  storageBucket: "qrmenu-aa2e9.appspot.com",
-  messagingSenderId: "205192839120",
-  appId: "1:205192839120:web:129d0e59dbfb45d010c3d5"
+  authDomain: "ggapsuva-51387.firebaseapp.com",
+  projectId: "ggapsuva-51387",
+  storageBucket: "ggapsuva-51387.appspot.com",
+  messagingSenderId: "1085596496217",
+  appId: "1:1085596496217:web:f30cf77a19af8e8096dc48",
 };
 
 // Initialize Firebase
