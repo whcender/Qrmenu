@@ -8,6 +8,7 @@ import { headers } from "next/headers";
 export const fetchProduct = async (page: number, cat?: string) => {
     headers();
 
+
     const limit = 8;
     if (!cat) {
         try {
@@ -28,12 +29,14 @@ export const fetchProduct = async (page: number, cat?: string) => {
 
     }
 
-    if(cat){
+    if (cat) {
         try {
             const result = await prisma.products.findMany({
                 where: {
-                    categoryname: cat
-                },
+                    categoryId: cat,
+                    // Büyük/küçük harf duyarlılığını dikkate almadan arama yapar
+
+                }
 
             });
 
