@@ -15,7 +15,7 @@ export const GET = async (req: NextRequest) => {
         try {
             const products = await prisma.products.findMany({
                 where: {
-                    categoryname: cat
+                    categoryId: cat
                 },
                 take: limit,
                 skip: (page - 1) * limit,
