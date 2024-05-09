@@ -1,4 +1,5 @@
 export type categoryType = {
+    id: number & string;
     name: string;
     image: string;
     ename: string;
