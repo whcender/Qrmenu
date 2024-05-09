@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { url } from '@/lib/url';
 import Text from './text';
 
-
 const Index = async () => {
   const getData = async () => {
     try {
@@ -27,8 +26,8 @@ const Index = async () => {
   const category: categoryType = await getData();
 
   return (
-    <div>
-      <div className={`w-full overflow-x-scroll whitespace-nowrap px-3 py-2 transition-all duration-200  `}>
+    <div className="sticky top-0 z-10 bg-white border-b border-gray-200">
+      <div className="w-full overflow-x-scroll whitespace-nowrap px-3 py-2">
         <ul className="flex gap-4">
           <Link className="flex flex-col items-center justify-center" href={`/category`}>
             <Text text={"Hepsi"} text2={"All"} />
