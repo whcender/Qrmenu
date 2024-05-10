@@ -38,6 +38,7 @@
     "react-icons": "^5.0.1",
     "react-intersection-observer": "^9.5.3",
     "react-toastify": "^10.0.4",
+    "sharp": "^0.33.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "translate": "^2.0.2",
