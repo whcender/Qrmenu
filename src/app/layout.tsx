@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export const metadata: Metadata = {
   title: "Arlan | QR Menü - Demo",
   description: "Arlan Medya QR Menü Demo",
+  robots: "robots.txt",
 };
 
 export default function RootLayout({
