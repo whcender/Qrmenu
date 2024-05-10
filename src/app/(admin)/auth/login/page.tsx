@@ -56,10 +56,9 @@ const page = () => {
     }
 
     return (
-        <div className='bg-white rounded-lg  gap-7 flex flex-col  py-6 px-20 max-md:px-2 max-md:py-3 max-md:mt-3 max-md:mb-3'>
+        <div className='bg-white text-black rounded-lg  gap-7 flex flex-col  py-6 px-20 max-md:px-2 max-md:py-3 max-md:mt-3 max-md:mb-3'>
             <div className='flex items-center justify-center gap-2 '>
-                <img className='w-10' src="https://em-content.zobj.net/source/apple/354/locked-with-key_1f510.png" alt="locked" />
-                <h2 className='font-bold text-4xl'>Auth</h2>
+                <h2 className='font-bold text-4xl font-osw'>Arlan Medya</h2>
             </div>
             <p className='text-center opacity-85 font-normal'>Tekrar hoşgeldin!</p>
             <p className='text-lg font-normal'>Giriş Formu!</p>
