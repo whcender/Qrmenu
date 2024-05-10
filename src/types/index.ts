@@ -1,9 +1,16 @@
 export type categoryType = {
-    id: number & string;
+    id: string;
     name: string;
     image: string;
     ename: string;
 }[];
+
+export interface categoryTypes {
+    id: string;
+    name: string;
+    ename: string;
+    image: string;
+  }
 
 export type productType = {
     id: number & string;
