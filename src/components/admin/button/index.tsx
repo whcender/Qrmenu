@@ -121,7 +121,7 @@ const index =  (image: any ,mainNamee: any) => {
         try {
           const options = {
             maxSizeMB: 1, // Max dosya boyutu megabayt cinsinden
-            maxWidthOrHeight: 100, // Max genişlik veya yükseklik piksel cinsinden
+            maxWidthOrHeight: 200, // Max genişlik veya yükseklik piksel cinsinden
             useWebWorker: true,
           };
     
