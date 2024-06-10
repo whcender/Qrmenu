@@ -27,7 +27,7 @@ const index = ({ products }: { products: oneProductType }) => {
         <Drawer>
             <DrawerTrigger asChild>
                 <ul className={`flex flex-wrap gap-10 justify-center items-center px-1 mt-4 font-outfit`}>
-                    <div className='flex items-center justify-center gap-3 border py-5 px-2  w-full rounded-lg shadow-lg relative' key={products.id}> {/* Anahtar olarak benzersiz bir değer kullanılmalı */}
+                    <div className='flex items-center justify-around gap-3 border py-5 px-2  w-full rounded-lg shadow-lg relative' key={products.id}> {/* Anahtar olarak benzersiz bir değer kullanılmalı */}
                         <Image
                             className='rounded-lg size-36 shadow-lg object-cover text-center'
                             src={products.image}
