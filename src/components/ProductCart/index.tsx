@@ -39,7 +39,7 @@ const index = ({ products }: { products: oneProductType }) => {
                             blurDataURL="https://i.hizliresim.com/74xpsgl.gif"
                             objectFit='cover'
                         />
-                        <div className='flex flex-col gap-4 '>
+                        <div className='flex w-[70%] flex-col gap-4 '>
                             <p className='w-full  font-black text-base capitalize'>{value ? products.name : products.ename}</p>
                             <p className='text-xs text-gray-950 font-semibold w-full '>{shortDescription}</p>
                             <p className='font-black text-black text-lg'><span className='text-xs font-black'>{products.price}</span>₺</p>
